@@ -27,11 +27,7 @@ import mailgun from "mailgun-js";
                    <p><a href='${link}'>${link}</a></p>`,
         }
         try {
-            mg.messages().send(body, function (error, body) {
-                if (!!error) console.error(error);
-                else console.log(body);
-            });
-
+            mg.messages().send(body);
             channel.ack(msg);
         } catch (err: any) {
             console.log(err.response.body);
