@@ -4,6 +4,10 @@ import { MAILGUN_TOKEN, MAIL_DOMAIN, RABBIT_DSN } from "./settings";
 import mailgun from "mailgun-js";
 
 (async () => {
+    if(!MAILGUN_TOKEN || !MAIL_DOMAIN) {
+        console.error('MAILGUN_TOKEN or MAIL_DOMAIN is not set');
+        return;
+    }
     const mg = mailgun({ apiKey: MAILGUN_TOKEN, domain: MAIL_DOMAIN });
 
     let connection: Connection = await connect(RABBIT_DSN);
